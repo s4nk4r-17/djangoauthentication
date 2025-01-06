@@ -9,7 +9,7 @@ class SignUpForm(forms.ModelForm):
 
         fields=["username","email","first_name","last_name","password"]
 
-class SignInForm(forms.Form):
+class SignInForm(forms.Form):      #inherited from normal form since there isn't create or update
 
     username=forms.CharField()
 

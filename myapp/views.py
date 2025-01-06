@@ -25,7 +25,7 @@ class SignUpView(View):
 
             data=form_instance.cleaned_data
 
-            User.objects.create_user(**data)
+            User.objects.create_user(**data) #create user for hashing password
 
             print("=====account created=====")
 
@@ -47,11 +47,21 @@ class SignInView(View):
     
     def post(self,request,*args,**kwargs):
 
-        #step1 extract username,password
-        #chk credential are valid
-        #start the session
-        pass
+        form_data=request.POST
 
+        form_instance=SignInForm(form_data)
+
+        if form_instance.is_valid():
+
+            data=form_instance.cleaned_data #{username:"django",password:"Password@123"}
+
+            uname=data.get("username")
+
+            pwd=data.get("password")
+
+            print(uname,pwd)
+
+        return redirect("signin")
 
 # django.contrib.auth
 # models
