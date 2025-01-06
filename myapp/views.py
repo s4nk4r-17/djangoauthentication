@@ -4,7 +4,7 @@ from myapp.forms import SignUpForm,SignInForm
 
 from django.contrib.auth.models import User
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 
@@ -67,15 +67,33 @@ class SignInView(View):
 
             if user_object:
 
-                print("Valid")
+                login(request,user_object)
+
+                print(request.user)
+
+                print("session started")
+
+                return redirect("index")
 
             else:
 
                 print("invalid")
 
             return redirect("signin")
-
             
+class IndexView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        return render(request,"index.html")
+
+class LogoutView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        logout(request)
+
+        return redirect("signin")
 
 
 
