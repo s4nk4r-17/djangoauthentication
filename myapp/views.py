@@ -51,3 +51,10 @@ class SignInView(View):
         #chk credential are valid
         #start the session
         pass
+
+
+# django.contrib.auth
+# models
+# AbstractBaseUser(password)
+# AbstractUser(username,email,first_name,last_name)
+# User
