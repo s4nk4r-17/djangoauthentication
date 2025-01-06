@@ -4,6 +4,8 @@ from myapp.forms import SignUpForm,SignInForm
 
 from django.contrib.auth.models import User
 
+from django.contrib.auth import authenticate
+
 # Create your views here.
 
 class SignUpView(View):
@@ -61,7 +63,26 @@ class SignInView(View):
 
             print(uname,pwd)
 
-        return redirect("signin")
+            user_object=authenticate(request,username=uname,password=pwd)
+
+            if user_object:
+
+                print("Valid")
+
+            else:
+
+                print("invalid")
+
+            return redirect("signin")
+
+            
+
+
+
+
+
+
+
 
 # django.contrib.auth
 # models
